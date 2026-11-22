@@ -1,0 +1,21 @@
+# Delphi
+*.dcu
+*.exe
+*.dll
+*.bpl
+*.identcache
+*.local
+*.stat
+*.dsk
+*.~*
+
+# Pastas de compilação
+Win32/
+Win64/
+Debug/
+Release/
+__history/
+__recovery/
+
+# Configurações locais
+*.deployproj.local
