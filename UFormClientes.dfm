@@ -26,7 +26,6 @@ object FormClientes: TFormClientes
     Align = alClient
     Style = tsFlatButtons
     TabOrder = 0
-    ExplicitHeight = 726
     object tsListagem: TTabSheet
       Caption = 'Listagem'
       object Panel1: TPanel
@@ -73,6 +72,7 @@ object FormClientes: TFormClientes
           Top = 105
           Width = 449
           Height = 23
+          CharCase = ecUpperCase
           TabOrder = 1
         end
         object btConsultar: TBitBtn
@@ -158,7 +158,6 @@ object FormClientes: TFormClientes
           NumGlyphs = 2
           ParentFont = False
           TabOrder = 0
-          ExplicitLeft = 904
         end
         object Panel6: TPanel
           Left = 17
@@ -186,7 +185,6 @@ object FormClientes: TFormClientes
         Height = 536
         Align = alClient
         TabOrder = 2
-        ExplicitHeight = 504
         object dbgClientes: TDBGrid
           Left = 1
           Top = 1
@@ -301,6 +299,18 @@ object FormClientes: TFormClientes
               Title.Font.Style = [fsBold]
               Width = 100
               Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'tipo_pessoa'
+              Title.Alignment = taCenter
+              Title.Caption = 'Tipo'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Segoe UI'
+              Title.Font.Style = [fsBold]
+              Visible = True
             end>
         end
       end
@@ -318,7 +328,7 @@ object FormClientes: TFormClientes
         Left = 0
         Top = 0
         Width = 993
-        Height = 609
+        Height = 641
         Align = alTop
         TabOrder = 0
         object Label2: TLabel
@@ -348,7 +358,7 @@ object FormClientes: TFormClientes
         end
         object Label3: TLabel
           Left = 40
-          Top = 77
+          Top = 109
           Width = 64
           Height = 17
           Caption = 'CPF/CNPJ:'
@@ -361,7 +371,7 @@ object FormClientes: TFormClientes
         end
         object Label4: TLabel
           Left = 58
-          Top = 124
+          Top = 156
           Width = 41
           Height = 17
           Caption = 'Nome:'
@@ -374,7 +384,7 @@ object FormClientes: TFormClientes
         end
         object Label5: TLabel
           Left = 24
-          Top = 172
+          Top = 204
           Width = 72
           Height = 17
           Caption = 'Logradouro'
@@ -387,7 +397,7 @@ object FormClientes: TFormClientes
         end
         object Label6: TLabel
           Left = 46
-          Top = 220
+          Top = 252
           Width = 54
           Height = 17
           Caption = 'N'#250'mero:'
@@ -400,7 +410,7 @@ object FormClientes: TFormClientes
         end
         object Label7: TLabel
           Left = 59
-          Top = 268
+          Top = 300
           Width = 41
           Height = 17
           Caption = 'Bairro:'
@@ -413,7 +423,7 @@ object FormClientes: TFormClientes
         end
         object Label8: TLabel
           Left = 72
-          Top = 309
+          Top = 341
           Width = 27
           Height = 17
           Caption = 'CEP:'
@@ -426,7 +436,7 @@ object FormClientes: TFormClientes
         end
         object Label9: TLabel
           Left = 54
-          Top = 356
+          Top = 388
           Width = 46
           Height = 17
           Caption = 'Cidade:'
@@ -439,7 +449,7 @@ object FormClientes: TFormClientes
         end
         object Label10: TLabel
           Left = 77
-          Top = 404
+          Top = 436
           Width = 20
           Height = 17
           Caption = 'UF:'
@@ -452,7 +462,7 @@ object FormClientes: TFormClientes
         end
         object Label11: TLabel
           Left = 1
-          Top = 571
+          Top = 603
           Width = 96
           Height = 17
           Caption = 'Cadastrado em:'
@@ -465,7 +475,7 @@ object FormClientes: TFormClientes
         end
         object Label12: TLabel
           Left = 56
-          Top = 500
+          Top = 532
           Width = 43
           Height = 17
           Caption = 'E-mail:'
@@ -478,7 +488,7 @@ object FormClientes: TFormClientes
         end
         object Label13: TLabel
           Left = 43
-          Top = 540
+          Top = 572
           Width = 57
           Height = 17
           Caption = 'Telefone:'
@@ -489,18 +499,33 @@ object FormClientes: TFormClientes
           Font.Style = [fsBold]
           ParentFont = False
         end
+        object Label16: TLabel
+          Left = 26
+          Top = 72
+          Width = 78
+          Height = 17
+          Caption = 'Tipo pessoa:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
         object edtDocumento: TMaskEdit
           Left = 112
-          Top = 74
-          Width = 353
+          Top = 106
+          Width = 155
           Height = 25
           CharCase = ecUpperCase
+          EditMask = '999.999.999-99;0;_'
+          MaxLength = 14
           TabOrder = 0
           Text = ''
         end
         object edtNome: TEdit
           Left = 112
-          Top = 120
+          Top = 152
           Width = 529
           Height = 25
           CharCase = ecUpperCase
@@ -508,7 +533,7 @@ object FormClientes: TFormClientes
         end
         object edtLog: TEdit
           Left = 112
-          Top = 168
+          Top = 200
           Width = 729
           Height = 25
           CharCase = ecUpperCase
@@ -516,7 +541,7 @@ object FormClientes: TFormClientes
         end
         object edtNumero: TEdit
           Left = 112
-          Top = 216
+          Top = 248
           Width = 145
           Height = 25
           CharCase = ecUpperCase
@@ -524,7 +549,7 @@ object FormClientes: TFormClientes
         end
         object edtBairro: TEdit
           Left = 112
-          Top = 264
+          Top = 296
           Width = 433
           Height = 25
           CharCase = ecUpperCase
@@ -532,7 +557,7 @@ object FormClientes: TFormClientes
         end
         object edtCep: TMaskEdit
           Left = 112
-          Top = 306
+          Top = 338
           Width = 89
           Height = 25
           EditMask = '00000-000;0;_'
@@ -542,7 +567,7 @@ object FormClientes: TFormClientes
         end
         object edtCidade: TEdit
           Left = 112
-          Top = 353
+          Top = 385
           Width = 433
           Height = 25
           CharCase = ecUpperCase
@@ -550,7 +575,7 @@ object FormClientes: TFormClientes
         end
         object cbEstado: TComboBox
           Left = 112
-          Top = 400
+          Top = 432
           Width = 57
           Height = 25
           ItemIndex = 3
@@ -587,7 +612,7 @@ object FormClientes: TFormClientes
         end
         object edtDataCadastro: TDateTimePicker
           Left = 112
-          Top = 567
+          Top = 599
           Width = 161
           Height = 25
           Date = 46347.00000000000000000
@@ -599,7 +624,7 @@ object FormClientes: TFormClientes
         end
         object chAtivo: TCheckBox
           Left = 61
-          Top = 456
+          Top = 488
           Width = 68
           Height = 17
           Alignment = taLeftJustify
@@ -616,28 +641,49 @@ object FormClientes: TFormClientes
         end
         object edtEmail: TEdit
           Left = 112
-          Top = 497
+          Top = 529
           Width = 513
           Height = 25
           TabOrder = 10
         end
         object edtTelefone: TEdit
           Left = 112
-          Top = 537
+          Top = 569
           Width = 225
           Height = 25
           CharCase = ecUpperCase
           TabOrder = 11
         end
+        object rbFisica: TRadioButton
+          Left = 112
+          Top = 72
+          Width = 57
+          Height = 17
+          Caption = 'F'#237'sica'
+          Checked = True
+          TabOrder = 12
+          TabStop = True
+          OnClick = rbFisicaClick
+        end
+        object rbJuridica: TRadioButton
+          Left = 192
+          Top = 72
+          Width = 73
+          Height = 17
+          Caption = 'Jur'#237'dica'
+          TabOrder = 13
+          OnClick = rbJuridicaClick
+        end
       end
       object Panel5: TPanel
         Left = 0
-        Top = 609
+        Top = 641
         Width = 993
-        Height = 121
+        Height = 89
         Align = alClient
         TabOrder = 1
-        ExplicitHeight = 84
+        ExplicitTop = 609
+        ExplicitHeight = 96
         object btSalvar: TBitBtn
           Left = 40
           Top = 24
@@ -691,7 +737,7 @@ object FormClientes: TFormClientes
       'select id, documento, nome,'
       '  logradouro, numero, bairro,'
       '  cep, cidade, estado, data_cadastro, ativo,'
-      '  email, telefone'
+      '  email, telefone, tipo_pessoa'
       'from clientes'
       'where (documento =:pdocumento or :pdocumento is null)'
       '  and (nome like :pnome or :pnome is null)'
@@ -725,12 +771,12 @@ object FormClientes: TFormClientes
       '       insert into clientes'
       
         '(id, documento, nome, logradouro, numero, bairro, cep, cidade, e' +
-        'stado, ativo, email, telefone, data_cadastro)'
+        'stado, ativo, email, telefone, data_cadastro, tipo_pessoa)'
       'values'
       
         '(:pid, :pdocumento, :pnome, :plogradouro, :pnumero, :pbairro, :p' +
         'cep, :pcidade, :pestado, :pativo, :pemail, :ptelefone, CURRENT_T' +
-        'IMESTAMP)')
+        'IMESTAMP, :ppessoa)')
     ParamData = <
       item
         Name = 'PID'
@@ -803,6 +849,12 @@ object FormClientes: TFormClientes
         DataType = ftString
         ParamType = ptInput
         Value = Null
+      end
+      item
+        Name = 'PPESSOA'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
       end>
     Left = 220
     Top = 318
@@ -821,7 +873,8 @@ object FormClientes: TFormClientes
       'estado =:pestado,'
       'ativo =:pativo,'
       'email =:pemail,'
-      'telefone =:ptelefone'
+      'telefone =:ptelefone,'
+      'tipo_pessoa =:ppessoa'
       'where id =:pid')
     ParamData = <
       item
@@ -886,6 +939,12 @@ object FormClientes: TFormClientes
       end
       item
         Name = 'PTELEFONE'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'PPESSOA'
         DataType = ftString
         ParamType = ptInput
         Value = Null

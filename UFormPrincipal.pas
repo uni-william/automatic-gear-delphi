@@ -13,6 +13,9 @@ type
     Clientes1: TMenuItem;
     N1: TMenuItem;
     N2: TMenuItem;
+    Produtos1: TMenuItem;
+    Operaes1: TMenuItem;
+    Pedidos1: TMenuItem;
     procedure Clientes1Click(Sender: TObject);
     procedure N2Click(Sender: TObject);
   private
@@ -28,7 +31,7 @@ implementation
 
 {$R *.dfm}
 
-uses UFormClientes;
+uses UFormClientes, UDMPrincipal;
 
 procedure TFormPrincipal.Clientes1Click(Sender: TObject);
 begin

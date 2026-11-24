@@ -64,6 +64,9 @@ type
     Panel7: TPanel;
     Label14: TLabel;
     Label15: TLabel;
+    Label16: TLabel;
+    rbFisica: TRadioButton;
+    rbJuridica: TRadioButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormDestroy(Sender: TObject);
     procedure btConsultarClick(Sender: TObject);
@@ -75,6 +78,8 @@ type
     procedure dbgClientesDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure FormShow(Sender: TObject);
+    procedure rbFisicaClick(Sender: TObject);
+    procedure rbJuridicaClick(Sender: TObject);
   private
     { Private declarations }
     procedure novoCliente;
@@ -82,6 +87,7 @@ type
     procedure inserirCliente;
     procedure atualizarCliente;
     procedure carregarCliente;
+    function validarDocumento(documento : String) : String;
   public
     { Public declarations }
   end;
@@ -108,7 +114,7 @@ begin
     if rgFiltro.ItemIndex = 0 then
       QClientes.ParamByName('pdocumento').AsString := edtFiltro.Text
     else
-      QClientes.ParamByName('pnome').AsString := edtFiltro.Text
+      QClientes.ParamByName('pnome').AsString := '%' + edtFiltro.Text + '%';
   end;
   if chAtivos.Checked = true then
     QClientes.ParamByName('pativo').AsBoolean := True;
@@ -149,6 +155,18 @@ begin
   if QClientes.Active and (QClientes.RecordCount > 0) then
   begin
     lblId.Caption := Copy(GUIDToString(QClientes.FieldByName('id').AsGuid), 2, 36);
+
+    if  QClientes.FieldByName('tipo_pessoa').AsString = 'F' then
+    begin
+      rbFisica.Checked := true;
+      edtDocumento.EditMask := '999.999.999-99;0;_';
+    end
+    else
+    begin
+      rbJuridica.Checked := true;
+      edtDocumento.EditMask := '99.999.999/9999-99;0;_';
+    end;
+
     edtDocumento.Text := QClientes.FieldByName('documento').AsString;
     edtNome.Text := QClientes.FieldByName('nome').AsString;
     edtLog.Text := QClientes.FieldByName('logradouro').AsString;
@@ -215,6 +233,10 @@ begin
   insertSQL.ParamByName('pativo').AsBoolean := chAtivo.Checked;
   insertSQL.ParamByName('pemail').AsString := edtEmail.Text;
   insertSQL.ParamByName('ptelefone').AsString := edtTelefone.Text;
+  if rbFisica.Checked then
+    insertSQL.ParamByName('ppessoa').AsString := 'F'
+  else
+    insertSQL.ParamByName('ppessoa').AsString := 'J';
   insertSQL.Execute;
   lblId.Caption := uuid;
   ShowMessage('Cliente salvo com sucesso!');
@@ -235,6 +257,10 @@ begin
   updaSQL.ParamByName('pativo').AsBoolean := chAtivo.Checked;
   updaSQL.ParamByName('pemail').AsString := edtEmail.Text;
   updaSQL.ParamByName('ptelefone').AsString := edtTelefone.Text;
+  if rbFisica.Checked then
+    updaSQL.ParamByName('ppessoa').AsString := 'F'
+  else
+    updaSQL.ParamByName('ppessoa').AsString := 'J';
   updaSQL.Execute;
   ShowMessage('Cliente atualizado com sucesso!');
 end;
@@ -242,7 +268,9 @@ end;
 procedure TFormClientes.novoCliente;
 begin
   lblId.Caption := '';
+  rbFisica.Checked := true;
   edtDocumento.Clear;
+  edtDocumento.EditMask := '999.999.999-99;0;_';
   edtNome.Clear;
   edtLog.Clear;
   edtNumero.Clear;
@@ -256,6 +284,16 @@ begin
   edtTelefone.Clear;
 end;
 
+procedure TFormClientes.rbFisicaClick(Sender: TObject);
+begin
+  edtDocumento.EditMask := '999.999.999-99;0;_';
+end;
+
+procedure TFormClientes.rbJuridicaClick(Sender: TObject);
+begin
+  edtDocumento.EditMask := '99.999.999/9999-99;0;_';
+end;
+
 function TFormClientes.validarCampos: Boolean;
 var
   resultado : Boolean;
@@ -264,7 +302,7 @@ begin
   defalutMsg := 'Os seguintes campos são obrigatórios: ' + #13 + #13;
   camposMsg := '';
   resultado := true;
-  if trim(edtDocumento.Text) = EmptyStr then
+  if trim(validarDocumento(edtDocumento.Text)) = EmptyStr then
   begin
     camposMsg := camposMsg + 'CPF/CNPJ' + #13;
     resultado := false;
@@ -287,6 +325,17 @@ begin
   end;
 
   Result := resultado;
+
+end;
+
+function TFormClientes.validarDocumento(documento: String): String;
+var
+  newDoc : String;
+begin
+   newDoc := documento.Replace('.', '');
+   newDoc := newDoc.Replace('-', '');
+   newDoc := newDoc.Replace('/', '');
+   Result := newDoc;
 
 end;
 
