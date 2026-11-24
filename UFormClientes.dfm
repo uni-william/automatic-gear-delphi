@@ -682,10 +682,8 @@ object FormClientes: TFormClientes
         Height = 89
         Align = alClient
         TabOrder = 1
-        ExplicitTop = 609
-        ExplicitHeight = 96
         object btSalvar: TBitBtn
-          Left = 40
+          Left = 48
           Top = 24
           Width = 98
           Height = 41
@@ -696,7 +694,7 @@ object FormClientes: TFormClientes
           OnClick = btSalvarClick
         end
         object btVoltar: TBitBtn
-          Left = 375
+          Left = 262
           Top = 24
           Width = 98
           Height = 41
@@ -707,7 +705,7 @@ object FormClientes: TFormClientes
           OnClick = btVoltarClick
         end
         object btNovo: TBitBtn
-          Left = 200
+          Left = 155
           Top = 24
           Width = 98
           Height = 41
@@ -722,6 +720,22 @@ object FormClientes: TFormClientes
           ParentFont = False
           TabOrder = 2
           OnClick = btNovoClick
+        end
+        object BitBtn2: TBitBtn
+          Left = 370
+          Top = 24
+          Width = 98
+          Height = 41
+          Caption = '&Fechar'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          Kind = bkClose
+          NumGlyphs = 2
+          ParentFont = False
+          TabOrder = 3
         end
       end
     end

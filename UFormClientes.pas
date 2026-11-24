@@ -67,6 +67,7 @@ type
     Label16: TLabel;
     rbFisica: TRadioButton;
     rbJuridica: TRadioButton;
+    BitBtn2: TBitBtn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormDestroy(Sender: TObject);
     procedure btConsultarClick(Sender: TObject);
